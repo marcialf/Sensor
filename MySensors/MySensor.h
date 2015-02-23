@@ -25,8 +25,17 @@
 #include <Arduino.h>
 #include <SPI.h>
 #include "utility/LowPower.h"
+
+#ifdef NRF24
 #include "utility/RF24.h"
 #include "utility/RF24_config.h"
+#endif
+
+#ifdef NRF905
+#include "utility/RF905.h"
+#include "utility/RF905_config.h"
+#endif
+
 #endif
 
 #ifdef DEBUG
@@ -80,7 +89,13 @@ struct ControllerConfig {
 };
 
 #ifdef __cplusplus
+
+#ifdef NRF24
 class MySensor : public RF24
+#endif
+#ifdef NRF905
+class MySensor : public RF24
+#endif
 {
   public:
 	/**
